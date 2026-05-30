@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://bi6wfulgjp0ml"]
+
+[ext_resource type="FontFile" uid="uid://dtjacob8k33e4" path="res://extAssets/spleen-2.2.0/spleen-8x16.otf" id="1_1h68f"]
+
+[resource]
+default_font = ExtResource("1_1h68f")

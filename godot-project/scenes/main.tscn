@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cx7c3g6uekqg"]
+
+[ext_resource type="Script" uid="uid://3snrnt3qhca7" path="res://src/main.gd" id="1_o5qli"]
+
+[node name="Main" type="Node2D" unique_id=1134354879]
+script = ExtResource("1_o5qli")
+
+[node name="Control" type="Control" parent="." unique_id=1986766474]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 240.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Control" unique_id=1088031948]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="VBoxContainer" parent="Control/CenterContainer" unique_id=897279693]
+layout_mode = 2
+
+[node name="Difficulty" type="Label" parent="Control/CenterContainer/Container" unique_id=1302786795]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Diffculty: NaN"
+horizontal_alignment = 1
+
+[node name="Container" type="HBoxContainer" parent="Control/CenterContainer/Container" unique_id=1106977096]
+layout_mode = 2
+theme_override_constants/separation = 23
+
+[node name="Win" type="Button" parent="Control/CenterContainer/Container/Container" unique_id=362210257]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Win"
+
+[node name="Lose" type="Button" parent="Control/CenterContainer/Container/Container" unique_id=1789923792]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Lose
+"
+
+[connection signal="pressed" from="Control/CenterContainer/Container/Container/Win" to="." method="_on_win_pressed"]
+[connection signal="pressed" from="Control/CenterContainer/Container/Container/Lose" to="." method="_on_lose_pressed"]

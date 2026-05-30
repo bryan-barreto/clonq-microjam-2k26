@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://woe0fpgirdlf"]
+
+[ext_resource type="Script" uid="uid://bi1xd3ei5o006" path="res://src/sleep.gd" id="1_4lrkj"]
+
+[node name="Sleep" type="Node2D" unique_id=863212393]
+script = ExtResource("1_4lrkj")
+
+[node name="Container" type="Control" parent="." unique_id=1307125875]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 240.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Container" unique_id=2033479545]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 160.0
+
+[node name="Sleep" type="Label" parent="Container/CenterContainer" unique_id=1914224255]
+layout_mode = 2
+text = "Sleep"

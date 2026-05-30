@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://7e073btnyvat"]
+
+[ext_resource type="Script" uid="uid://cvj36q7jsyvpb" path="res://src/win.gd" id="1_r4oei"]
+
+[node name="Win" type="Node2D" unique_id=1642136239]
+script = ExtResource("1_r4oei")
+
+[node name="Container" type="Control" parent="." unique_id=913488335]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 240.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Container" unique_id=904626010]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 160.0
+
+[node name="Win" type="Label" parent="Container/CenterContainer" unique_id=348624530]
+layout_mode = 2
+text = "Win"
