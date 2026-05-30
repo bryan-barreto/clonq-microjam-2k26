@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://cx7c3g6uekqg"]
 
 [ext_resource type="Script" uid="uid://3snrnt3qhca7" path="res://src/main.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://cl0m8fx5c52ip" path="res://src/hit_box.gd" id="2_sugp2"]
+[ext_resource type="Texture2D" uid="uid://e11n57commt2" path="res://assets/hitbot.png" id="3_jyhfs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
+size = Vector2(12, 30)
 
 [node name="Main" type="Node2D" unique_id=1134354879]
 script = ExtResource("1_o5qli")
@@ -46,6 +51,15 @@ custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 text = "Lose
 "
+
+[node name="HitBox" type="CharacterBody2D" parent="." unique_id=1068112276]
+script = ExtResource("2_sugp2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1294582031]
+shape = SubResource("RectangleShape2D_tbgi4")
+
+[node name="Sprite2D" type="Sprite2D" parent="HitBox" unique_id=2100626930]
+texture = ExtResource("3_jyhfs")
 
 [connection signal="pressed" from="Control/CenterContainer/Container/Container/Win" to="." method="_on_win_pressed"]
 [connection signal="pressed" from="Control/CenterContainer/Container/Container/Lose" to="." method="_on_lose_pressed"]
