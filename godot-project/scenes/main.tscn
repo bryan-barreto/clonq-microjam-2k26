@@ -1,11 +1,20 @@
 [gd_scene format=3 uid="uid://cx7c3g6uekqg"]
 
 [ext_resource type="Script" uid="uid://3snrnt3qhca7" path="res://src/main.gd" id="1_o5qli"]
-[ext_resource type="Script" uid="uid://cl0m8fx5c52ip" path="res://src/hit_box.gd" id="2_sugp2"]
-[ext_resource type="Texture2D" uid="uid://e11n57commt2" path="res://assets/hitbot.png" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://dxci17kq4j4nv" path="res://prefab/hit_box.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://dn3hyyv0tnt5b" path="res://prefab/ball.tscn" id="3_jyhfs"]
+[ext_resource type="Script" uid="uid://rbupkt3y7y2f" path="res://src/pillar.gd" id="4_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://e11n57commt2" path="res://assets/hitbot.png" id="5_tefeu"]
+[ext_resource type="Script" uid="uid://d3cesqdn66rk6" path="res://src/mouse.gd" id="6_tefeu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6xl0"]
+size = Vector2(347, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tipki"]
 size = Vector2(12, 30)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tefeu"]
+radius = 2.0
 
 [node name="Main" type="Node2D" unique_id=1134354879]
 script = ExtResource("1_o5qli")
@@ -29,6 +38,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Container" type="VBoxContainer" parent="Control/CenterContainer" unique_id=897279693]
+visible = false
 layout_mode = 2
 
 [node name="Difficulty" type="Label" parent="Control/CenterContainer/Container" unique_id=1302786795]
@@ -44,22 +54,57 @@ theme_override_constants/separation = 23
 [node name="Win" type="Button" parent="Control/CenterContainer/Container/Container" unique_id=362210257]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+disabled = true
 text = "Win"
 
 [node name="Lose" type="Button" parent="Control/CenterContainer/Container/Container" unique_id=1789923792]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+disabled = true
 text = "Lose
 "
 
-[node name="HitBox" type="CharacterBody2D" parent="." unique_id=1068112276]
-script = ExtResource("2_sugp2")
+[node name="HitBox" parent="." unique_id=1649692202 instance=ExtResource("2_sugp2")]
+position = Vector2(71, 141)
+max_player_speed = 40.0
+rotation_speed = 5.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1294582031]
-shape = SubResource("RectangleShape2D_tbgi4")
+[node name="Ball" parent="." unique_id=2020230802 instance=ExtResource("3_jyhfs")]
+position = Vector2(278, 136)
 
-[node name="Sprite2D" type="Sprite2D" parent="HitBox" unique_id=2100626930]
-texture = ExtResource("3_jyhfs")
+[node name="Floor" type="StaticBody2D" parent="." unique_id=1649123140]
+position = Vector2(0, 160)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1346776357]
+position = Vector2(124.5, 10)
+shape = SubResource("RectangleShape2D_o6xl0")
+
+[node name="Pillar" type="RigidBody2D" parent="." unique_id=1932170575]
+position = Vector2(120, 142)
+mass = 1.907
+gravity_scale = 0.0
+script = ExtResource("4_tbgi4")
+thrust = -100.0
+angularFricton = 0.02
+linearFriction = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pillar" unique_id=551660050]
+shape = SubResource("RectangleShape2D_tipki")
+
+[node name="LeftThrust" type="Node2D" parent="Pillar" unique_id=306129480]
+position = Vector2(-2, 0)
+
+[node name="RightThrust" type="Node2D" parent="Pillar" unique_id=996238287]
+position = Vector2(2, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Pillar" unique_id=655664931]
+texture = ExtResource("5_tefeu")
+
+[node name="Mouse" type="Area2D" parent="." unique_id=573510076]
+script = ExtResource("6_tefeu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse" unique_id=1059333392]
+shape = SubResource("CircleShape2D_tefeu")
 
 [connection signal="pressed" from="Control/CenterContainer/Container/Container/Win" to="." method="_on_win_pressed"]
 [connection signal="pressed" from="Control/CenterContainer/Container/Container/Lose" to="." method="_on_lose_pressed"]

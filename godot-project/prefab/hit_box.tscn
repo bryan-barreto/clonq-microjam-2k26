@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dxci17kq4j4nv"]
+
+[ext_resource type="Script" uid="uid://cl0m8fx5c52ip" path="res://src/hit_box.gd" id="1_jljiw"]
+[ext_resource type="Texture2D" uid="uid://e11n57commt2" path="res://assets/hitbot.png" id="2_6dw6b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
+size = Vector2(12, 30)
+
+[node name="HitBox" type="CharacterBody2D" unique_id=1649692202]
+script = ExtResource("1_jljiw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2066238002]
+shape = SubResource("RectangleShape2D_tbgi4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1055822905]
+texture = ExtResource("2_6dw6b")
+
+[node name="Drill" type="Node2D" parent="." unique_id=1682587422]
+position = Vector2(0, -20)
