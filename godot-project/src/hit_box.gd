@@ -12,12 +12,15 @@ func _process(delta):
 
 func _move_toward_mouse(delta: float) -> void:
 	var dir_to_mouse: Vector2 = get_global_mouse_position() - drill.global_position
-	var max_velocity_this_update: float = max_player_speed * delta
-	var max_velocity_this_update_squared := max_velocity_this_update ** 2
-	if dir_to_mouse.length_squared() > max_velocity_this_update_squared:
-		dir_to_mouse = dir_to_mouse.normalized() * max_velocity_this_update
-	velocity = dir_to_mouse / delta
-	var _collided := move_and_slide()
+	#var max_offset_this_update: float = max_player_speed * delta
+	#var max_offset_this_update_squared := max_offset_this_update ** 2
+	#if dir_to_mouse.length_squared() > max_offset_this_update_squared:
+		#dir_to_mouse = dir_to_mouse.normalized() * max_offset_this_update
+	#var velocity_this_update = dir_to_mouse
+	var new_vel = dir_to_mouse.normalized() * max_player_speed * delta
+	var collided := move_and_collide(new_vel)
+	if (collided):
+		collided.get_collider().apply_impulse(Vector2(0,-1).rotated(rotation))
 
 func _look_at_mouse(delta: float) -> void:
 	var target_angle = ((get_global_mouse_position() - global_position).angle() + deg_to_rad(90))

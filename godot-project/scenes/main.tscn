@@ -3,18 +3,23 @@
 [ext_resource type="Script" uid="uid://3snrnt3qhca7" path="res://src/main.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://dxci17kq4j4nv" path="res://prefab/hit_box.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dn3hyyv0tnt5b" path="res://prefab/ball.tscn" id="3_jyhfs"]
-[ext_resource type="Script" uid="uid://rbupkt3y7y2f" path="res://src/pillar.gd" id="4_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://e11n57commt2" path="res://assets/hitbot.png" id="5_tefeu"]
+[ext_resource type="Script" uid="uid://dor43ks1wt1fp" path="res://src/meteor.gd" id="4_tbgi4"]
 [ext_resource type="Script" uid="uid://d3cesqdn66rk6" path="res://src/mouse.gd" id="6_tefeu"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6xl0"]
-size = Vector2(347, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tipki"]
-size = Vector2(12, 30)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tefeu"]
 radius = 2.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6xl0"]
+size = Vector2(240, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
+size = Vector2(7, 165)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tipki"]
+size = Vector2(241, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_85g3d"]
+size = Vector2(4, 168)
 
 [node name="Main" type="Node2D" unique_id=1134354879]
 script = ExtResource("1_o5qli")
@@ -64,47 +69,42 @@ disabled = true
 text = "Lose
 "
 
-[node name="HitBox" parent="." unique_id=1649692202 instance=ExtResource("2_sugp2")]
-position = Vector2(71, 141)
+[node name="Drill" parent="." unique_id=1649692202 instance=ExtResource("2_sugp2")]
+position = Vector2(124, 142)
 max_player_speed = 40.0
 rotation_speed = 5.0
 
 [node name="Ball" parent="." unique_id=2020230802 instance=ExtResource("3_jyhfs")]
-position = Vector2(278, 136)
-
-[node name="Floor" type="StaticBody2D" parent="." unique_id=1649123140]
-position = Vector2(0, 160)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1346776357]
-position = Vector2(124.5, 10)
-shape = SubResource("RectangleShape2D_o6xl0")
-
-[node name="Pillar" type="RigidBody2D" parent="." unique_id=1932170575]
-position = Vector2(120, 142)
-mass = 1.907
+position = Vector2(116, 67)
+mass = 0.262
 gravity_scale = 0.0
 script = ExtResource("4_tbgi4")
-thrust = -100.0
-angularFricton = 0.02
-linearFriction = 0.1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pillar" unique_id=551660050]
-shape = SubResource("RectangleShape2D_tipki")
-
-[node name="LeftThrust" type="Node2D" parent="Pillar" unique_id=306129480]
-position = Vector2(-2, 0)
-
-[node name="RightThrust" type="Node2D" parent="Pillar" unique_id=996238287]
-position = Vector2(2, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Pillar" unique_id=655664931]
-texture = ExtResource("5_tefeu")
+speed = 5
 
 [node name="Mouse" type="Area2D" parent="." unique_id=573510076]
 script = ExtResource("6_tefeu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse" unique_id=1059333392]
 shape = SubResource("CircleShape2D_tefeu")
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=1649123140]
+position = Vector2(0, 160)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1346776357]
+position = Vector2(120, 3)
+shape = SubResource("RectangleShape2D_o6xl0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor" unique_id=151596821]
+position = Vector2(243.5, -77.5)
+shape = SubResource("RectangleShape2D_tefeu")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Floor" unique_id=15199806]
+position = Vector2(120.5, -162.5)
+shape = SubResource("RectangleShape2D_tipki")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Floor" unique_id=1146450974]
+position = Vector2(-2, -78)
+shape = SubResource("RectangleShape2D_85g3d")
 
 [connection signal="pressed" from="Control/CenterContainer/Container/Container/Win" to="." method="_on_win_pressed"]
 [connection signal="pressed" from="Control/CenterContainer/Container/Container/Lose" to="." method="_on_lose_pressed"]
