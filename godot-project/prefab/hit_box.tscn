@@ -6,14 +6,32 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
 size = Vector2(12, 30)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jljiw"]
+size = Vector2(6, 14)
+
 [node name="HitBox" type="CharacterBody2D" unique_id=1649692202]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_jljiw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2066238002]
+[node name="HitBox" type="CollisionShape2D" parent="." unique_id=2066238002]
 shape = SubResource("RectangleShape2D_tbgi4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1055822905]
 texture = ExtResource("2_6dw6b")
 
-[node name="Drill" type="Node2D" parent="." unique_id=1682587422]
+[node name="FollowNode" type="Node2D" parent="." unique_id=1682587422]
 position = Vector2(0, -20)
+
+[node name="DrillBox" type="StaticBody2D" parent="." unique_id=3011275]
+collision_layer = 6
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DrillBox" unique_id=1427523522]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_jljiw")
+
+[node name="Sprite2D2" type="Sprite2D" parent="DrillBox" unique_id=363462424]
+position = Vector2(2.3841858e-07, -17.5)
+scale = Vector2(0.49999994, 0.36666667)
+texture = ExtResource("2_6dw6b")

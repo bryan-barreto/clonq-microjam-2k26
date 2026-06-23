@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var drill = $Drill
+@onready var drill = $FollowNode
 
 @export var max_player_speed = 0.0
 
@@ -12,11 +12,6 @@ func _process(delta):
 
 func _move_toward_mouse(delta: float) -> void:
 	var dir_to_mouse: Vector2 = get_global_mouse_position() - drill.global_position
-	#var max_offset_this_update: float = max_player_speed * delta
-	#var max_offset_this_update_squared := max_offset_this_update ** 2
-	#if dir_to_mouse.length_squared() > max_offset_this_update_squared:
-		#dir_to_mouse = dir_to_mouse.normalized() * max_offset_this_update
-	#var velocity_this_update = dir_to_mouse
 	var new_vel = dir_to_mouse.normalized() * max_player_speed * delta
 	var collided := move_and_collide(new_vel)
 	if (collided):

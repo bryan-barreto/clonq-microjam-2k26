@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://3snrnt3qhca7" path="res://src/main.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://dxci17kq4j4nv" path="res://prefab/hit_box.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dn3hyyv0tnt5b" path="res://prefab/ball.tscn" id="3_jyhfs"]
-[ext_resource type="Script" uid="uid://dor43ks1wt1fp" path="res://src/meteor.gd" id="4_tbgi4"]
+[ext_resource type="Script" uid="uid://3fj2creufpif" path="res://src/floor.gd" id="6_o6xl0"]
 [ext_resource type="Script" uid="uid://d3cesqdn66rk6" path="res://src/mouse.gd" id="6_tefeu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tefeu"]
@@ -75,11 +75,9 @@ max_player_speed = 40.0
 rotation_speed = 5.0
 
 [node name="Ball" parent="." unique_id=2020230802 instance=ExtResource("3_jyhfs")]
-position = Vector2(116, 67)
-mass = 0.262
-gravity_scale = 0.0
-script = ExtResource("4_tbgi4")
-speed = 5
+position = Vector2(20, 139)
+linear_velocity = Vector2(1, -1)
+speed = 20.0
 
 [node name="Mouse" type="Area2D" parent="." unique_id=573510076]
 script = ExtResource("6_tefeu")
@@ -89,6 +87,7 @@ shape = SubResource("CircleShape2D_tefeu")
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=1649123140]
 position = Vector2(0, 160)
+script = ExtResource("6_o6xl0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1346776357]
 position = Vector2(120, 3)
