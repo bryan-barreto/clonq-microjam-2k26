@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://3snrnt3qhca7" path="res://src/main.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://dxci17kq4j4nv" path="res://prefab/hit_box.tscn" id="2_sugp2"]
-[ext_resource type="PackedScene" uid="uid://dn3hyyv0tnt5b" path="res://prefab/ball.tscn" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://3fj2creufpif" path="res://src/floor.gd" id="6_o6xl0"]
 [ext_resource type="Script" uid="uid://d3cesqdn66rk6" path="res://src/mouse.gd" id="6_tefeu"]
 
@@ -23,6 +22,12 @@ size = Vector2(4, 168)
 
 [node name="Main" type="Node2D" unique_id=1134354879]
 script = ExtResource("1_o5qli")
+split_amount = 1
+meteor_speed = 40.0
+meteor_health = 10
+damage_taken_per_hit = 5
+mini_spawn_interval = 2
+mini_spawn_amount = 2
 
 [node name="Control" type="Control" parent="." unique_id=1986766474]
 layout_mode = 3
@@ -74,11 +79,6 @@ position = Vector2(124, 142)
 max_player_speed = 40.0
 rotation_speed = 5.0
 
-[node name="Ball" parent="." unique_id=2020230802 instance=ExtResource("3_jyhfs")]
-position = Vector2(20, 139)
-linear_velocity = Vector2(1, -1)
-speed = 20.0
-
 [node name="Mouse" type="Area2D" parent="." unique_id=573510076]
 script = ExtResource("6_tefeu")
 
@@ -104,6 +104,10 @@ shape = SubResource("RectangleShape2D_tipki")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Floor" unique_id=1146450974]
 position = Vector2(-2, -78)
 shape = SubResource("RectangleShape2D_85g3d")
+
+[node name="Meteors" type="Node2D" parent="." unique_id=2079371963]
+
+[node name="MiniMeteors" type="Node2D" parent="." unique_id=591848546]
 
 [connection signal="pressed" from="Control/CenterContainer/Container/Container/Win" to="." method="_on_win_pressed"]
 [connection signal="pressed" from="Control/CenterContainer/Container/Container/Lose" to="." method="_on_lose_pressed"]

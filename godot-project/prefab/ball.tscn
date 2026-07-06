@@ -24,6 +24,7 @@ script = ExtResource("1_frjmt")
 shape = SubResource("CircleShape2D_frjmt")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=507031872]
+scale = Vector2(1.3142858, 1.3142858)
 texture = ExtResource("1_1hr4x")
 
 [node name="DrillableCollision" type="Area2D" parent="." unique_id=620875982]
@@ -34,3 +35,4 @@ collision_mask = 4
 shape = SubResource("CircleShape2D_1hr4x")
 
 [connection signal="body_entered" from="DrillableCollision" to="." method="_on_drillable_collision_body_entered"]
+[connection signal="body_exited" from="DrillableCollision" to="." method="_on_drillable_collision_body_exited"]
