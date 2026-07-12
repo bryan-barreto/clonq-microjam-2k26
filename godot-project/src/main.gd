@@ -63,7 +63,12 @@ func _on_spawn_meteors(meteor):
 		return
 	var new_list = []
 	for x in range(split_amount):
-		var new_meteor = meteor_fab.instantiate()
+		var new_meteor 
+		match meteor.level:
+			0:
+				new_meteor = meteor_lv_1_fab.instantiate()
+			1:
+				new_meteor = meteor_lv_2_fab.instantiate()
 		#var meteor_size = new_meteor.get_node("DrillableCollision/CollisionShape2D")
 		new_meteor.global_position = meteor.global_position
 		new_meteor.linear_velocity = (meteor.global_position - drill.global_position).normalized()
@@ -84,7 +89,7 @@ func _on_spawn_meteors(meteor):
 		new_list[x].spawn_minis.connect(_spawn_minis)
 
 func _spawn_minis(meteor):
-	const DIST_APART = 8
+	const DIST_APART = 5
 	var mini_count = 0
 	var drill_meteor_angle = drill.global_position.angle_to_point(meteor.global_position)
 	var mini_spawn_lower_angle = drill_meteor_angle - (mini_spread_range/2)
@@ -93,7 +98,6 @@ func _spawn_minis(meteor):
 		var new_mini = mini_fab.instantiate()
 		var dist_apart = (mini_count - mini_spawn_amount/2) * DIST_APART
 		new_mini.global_position = Vector2(meteor.global_position.x + dist_apart, meteor.global_position.y)
-		#new_mini.linear_velocity = (meteor.global_position - drill.global_position).normalized()
 		new_mini.linear_velocity = Vector2.RIGHT.rotated(x)
 		new_mini.speed = meteor_speed * 2
 		mini_count+=1

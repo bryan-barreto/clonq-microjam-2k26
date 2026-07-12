@@ -14,6 +14,8 @@ signal spawn_meteors(split_meteor)
 signal spawn_minis(meteor)
 
 @onready var drill = get_node("../../Drill")
+const VIEW_WIDTH = 240
+const VIEW_HEIGHT = 160
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,6 +40,16 @@ func _process(delta):
 	
 	if (health <= 0):
 		split()
+	
+	var radius = get_node("DrillableCollision/CollisionShape2D").shape.radius
+	if (global_position.x > VIEW_WIDTH + radius and linear_velocity.x > 0):
+		global_position.x = -radius
+	if (global_position.x < 0 - radius and linear_velocity.x < 0):
+		global_position.x = VIEW_WIDTH+radius
+	if (global_position.y > VIEW_HEIGHT + radius and linear_velocity.y > 0):
+		global_position.y = -radius
+	if (global_position.y < 0 - radius and linear_velocity.y < 0):
+		global_position.y = VIEW_HEIGHT+radius
 
 func _on_drillable_collision_body_entered(body):
 	if (body.name == "DrillBox"):
