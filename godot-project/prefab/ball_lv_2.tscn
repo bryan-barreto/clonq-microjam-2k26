@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://uc0njkn8r6ah"]
+
+[ext_resource type="Script" uid="uid://dor43ks1wt1fp" path="res://src/meteor.gd" id="1_741mf"]
+[ext_resource type="Texture2D" uid="uid://cga0otyo3iry3" path="res://assets/ball.png" id="2_as4t3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1hr4x"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_frjmt"]
+radius = 7.071068
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1hr4x"]
+radius = 12.0
+
+[node name="Ball" type="RigidBody2D" unique_id=2020230802]
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_1hr4x")
+gravity_scale = 0.0
+script = ExtResource("1_741mf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=846741595]
+shape = SubResource("CircleShape2D_frjmt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=507031872]
+position = Vector2(-5.9604645e-08, 5.364418e-07)
+scale = Vector2(0.6857143, 0.6857143)
+texture = ExtResource("2_as4t3")
+
+[node name="DrillableCollision" type="Area2D" parent="." unique_id=620875982]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DrillableCollision" unique_id=1584393871]
+shape = SubResource("CircleShape2D_1hr4x")
+
+[connection signal="body_entered" from="DrillableCollision" to="." method="_on_drillable_collision_body_entered"]
+[connection signal="body_exited" from="DrillableCollision" to="." method="_on_drillable_collision_body_exited"]

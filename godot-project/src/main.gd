@@ -13,6 +13,8 @@ extends Node2D
 @export var mini_spread_range = 0
 
 var meteor_fab = preload("res://prefab/ball.tscn")
+var meteor_lv_1_fab = preload("res://prefab/ball_lv_1.tscn")
+var meteor_lv_2_fab = preload("res://prefab/ball_lv_2.tscn")
 var mini_fab = preload("res://prefab/mini_meteor.tscn")
 var origin_meteor_pos = Vector2(20, 135)
 var num_of_meteors = 0
