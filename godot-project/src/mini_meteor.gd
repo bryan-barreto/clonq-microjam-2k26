@@ -34,3 +34,8 @@ func _process(delta):
 		global_position.y = -radius
 	if (global_position.y < 0 - radius and linear_velocity.y < 0):
 		global_position.y = VIEW_HEIGHT+radius
+
+
+func _on_body_entered(body):
+	if (body.name == "DrillBox"):
+		queue_free()

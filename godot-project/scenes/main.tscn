@@ -79,10 +79,14 @@ text = "Lose
 
 [node name="Drill" parent="." unique_id=1649692202 instance=ExtResource("2_sugp2")]
 position = Vector2(124, 142)
+collision_layer = 1
+collision_mask = 0
 max_player_speed = 40.0
 rotation_speed = 5.0
 
 [node name="Mouse" type="Area2D" parent="." unique_id=573510076]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("6_tefeu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse" unique_id=1059333392]

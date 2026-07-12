@@ -11,7 +11,7 @@ size = Vector2(6, 14)
 
 [node name="HitBox" type="CharacterBody2D" unique_id=1649692202]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 8
 script = ExtResource("1_jljiw")
 
 [node name="HitBox" type="CollisionShape2D" parent="." unique_id=2066238002]
@@ -24,7 +24,7 @@ texture = ExtResource("2_6dw6b")
 position = Vector2(0, -20)
 
 [node name="DrillBox" type="StaticBody2D" parent="." unique_id=3011275]
-collision_layer = 6
+collision_layer = 14
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DrillBox" unique_id=1427523522]

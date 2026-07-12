@@ -24,7 +24,6 @@ func _ready():
 func _process(delta):
 	if (linear_velocity == Vector2(0,0)):
 		var drill_pos = drill.global_position
-		print((self.global_position - drill_pos).normalized())
 		linear_velocity = (self.global_position - drill_pos).normalized()
 
 	if (linear_velocity.length() != speed):
@@ -32,7 +31,6 @@ func _process(delta):
 	
 	if (drilling):
 		health -= damage_taken_per_hit * delta
-		print(health)
 	
 	if (health <= mini_spawn_next):
 		spawn_minis.emit(self)
