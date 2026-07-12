@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://drs0h6web0g25"]
+
+[ext_resource type="Script" uid="uid://dcwqbgu3wdqck" path="res://src/mini_meteor.gd" id="1_0vngn"]
+[ext_resource type="Texture2D" uid="uid://cga0otyo3iry3" path="res://assets/ball.png" id="2_anfu0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ixwhy"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_85g3d"]
+radius = 2.0
+
+[sub_resource type="Animation" id="Animation_ixwhy"]
+resource_name = "1st"
+length = 6.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_sw1u8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_61vmn"]
+_data = {
+&"1st": SubResource("Animation_ixwhy"),
+&"RESET": SubResource("Animation_sw1u8")
+}
+
+[node name="MiniMeteor" type="RigidBody2D" unique_id=2048903303]
+collision_layer = 8
+collision_mask = 8
+physics_material_override = SubResource("PhysicsMaterial_ixwhy")
+gravity_scale = 0.0
+script = ExtResource("1_0vngn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1517211406]
+shape = SubResource("CircleShape2D_85g3d")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=818561467]
+scale = Vector2(0.114285715, 0.114285715)
+texture = ExtResource("2_anfu0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=672717129]
+libraries/ = SubResource("AnimationLibrary_61vmn")
+autoplay = &"1st"

@@ -28,6 +28,7 @@ meteor_health = 10
 damage_taken_per_hit = 5
 mini_spawn_interval = 2
 mini_spawn_amount = 2
+mini_spread_range = 50
 
 [node name="Control" type="Control" parent="." unique_id=1986766474]
 layout_mode = 3
@@ -62,6 +63,7 @@ layout_mode = 2
 theme_override_constants/separation = 23
 
 [node name="Win" type="Button" parent="Control/CenterContainer/Container/Container" unique_id=362210257]
+visible = false
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 disabled = true
@@ -87,6 +89,8 @@ shape = SubResource("CircleShape2D_tefeu")
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=1649123140]
 position = Vector2(0, 160)
+collision_layer = 9
+collision_mask = 9
 script = ExtResource("6_o6xl0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1346776357]

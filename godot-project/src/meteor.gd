@@ -10,7 +10,10 @@ var drilling = false
 var level = 0
 var level_cap = 3
 
-signal spawn_meteors(location, level)
+signal spawn_meteors(split_meteor)
+signal spawn_minis(meteor)
+
+@onready var drill = get_node("../../Drill")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,7 +21,7 @@ func _ready():
 
 func _process(delta):
 	if (linear_velocity == Vector2(0,0)):
-		var drill_pos = get_node("../../Drill").global_position
+		var drill_pos = drill.global_position
 		print((self.global_position - drill_pos).normalized())
 		linear_velocity = (self.global_position - drill_pos).normalized()
 
@@ -30,7 +33,7 @@ func _process(delta):
 		print(health)
 	
 	if (health <= mini_spawn_next):
-		print("Spawn Mini")
+		spawn_minis.emit(self)
 		mini_spawn_next -= mini_spawn_interval
 	
 	if (health <= 0):
@@ -45,4 +48,4 @@ func _on_drillable_collision_body_exited(body):
 		drilling = false
 
 func split():
-	spawn_meteors.emit(self, level)
+	spawn_meteors.emit(self)
