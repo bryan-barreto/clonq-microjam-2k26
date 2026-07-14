@@ -48,7 +48,7 @@ func _process(delta):
 func _on_win():
 	get_tree().change_scene_to_file("res://scenes/win.tscn")
 
-func _on_lose_pressed():
+func _on_lose():
 	get_tree().change_scene_to_file("res://scenes/lose.tscn")
 
 func set_difficulty(request_diff: float):

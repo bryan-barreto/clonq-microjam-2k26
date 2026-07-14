@@ -6,6 +6,8 @@ extends CharacterBody2D
 
 @export var rotation_speed = 0.0
 
+signal body_hit
+
 func _process(delta):
 	_look_at_mouse(delta)
 	_move_toward_mouse(delta)
@@ -24,3 +26,8 @@ func _look_at_mouse(delta: float) -> void:
 		rotation = rotate_toward(rotation, target_angle, rotation_speed * delta)
 	else:
 		rotation = target_angle
+
+
+func _on_hit_box_body_entered(body):
+	if (body.name != "DrillBox"):
+		body_hit.emit()

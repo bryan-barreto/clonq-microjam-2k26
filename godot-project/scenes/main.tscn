@@ -79,9 +79,7 @@ text = "Lose
 
 [node name="Drill" parent="." unique_id=1649692202 instance=ExtResource("2_sugp2")]
 position = Vector2(124, 142)
-collision_layer = 1
-collision_mask = 0
-max_player_speed = 40.0
+max_player_speed = 60.0
 rotation_speed = 5.0
 
 [node name="Mouse" type="Area2D" parent="." unique_id=573510076]
@@ -94,6 +92,7 @@ shape = SubResource("CircleShape2D_tefeu")
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=1649123140]
 process_mode = 4
+visible = false
 position = Vector2(0, 160)
 collision_layer = 9
 collision_mask = 9
@@ -121,3 +120,4 @@ shape = SubResource("RectangleShape2D_85g3d")
 
 [connection signal="pressed" from="Control/CenterContainer/Container/Container/Win" to="." method="_on_win_pressed"]
 [connection signal="pressed" from="Control/CenterContainer/Container/Container/Lose" to="." method="_on_lose_pressed"]
+[connection signal="body_hit" from="Drill" to="." method="_on_lose"]

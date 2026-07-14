@@ -9,12 +9,15 @@ size = Vector2(12, 30)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jljiw"]
 size = Vector2(6, 14)
 
-[node name="HitBox" type="CharacterBody2D" unique_id=1649692202]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dw6b"]
+size = Vector2(12, 27)
+
+[node name="Drill" type="CharacterBody2D" unique_id=1649692202]
 collision_layer = 2
-collision_mask = 8
+collision_mask = 0
 script = ExtResource("1_jljiw")
 
-[node name="HitBox" type="CollisionShape2D" parent="." unique_id=2066238002]
+[node name="Body" type="CollisionShape2D" parent="." unique_id=2066238002]
 shape = SubResource("RectangleShape2D_tbgi4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1055822905]
@@ -24,7 +27,7 @@ texture = ExtResource("2_6dw6b")
 position = Vector2(0, -20)
 
 [node name="DrillBox" type="StaticBody2D" parent="." unique_id=3011275]
-collision_layer = 14
+collision_layer = 12
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DrillBox" unique_id=1427523522]
@@ -35,3 +38,13 @@ shape = SubResource("RectangleShape2D_jljiw")
 position = Vector2(2.3841858e-07, -17.5)
 scale = Vector2(0.49999994, 0.36666667)
 texture = ExtResource("2_6dw6b")
+
+[node name="HitBox" type="Area2D" parent="." unique_id=859130779]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1457472958]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_6dw6b")
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

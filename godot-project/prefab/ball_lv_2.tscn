@@ -8,14 +8,14 @@ friction = 0.0
 bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_frjmt"]
-radius = 7.071068
+radius = 12.0415945
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1hr4x"]
 radius = 12.0
 
 [node name="Ball" type="RigidBody2D" unique_id=2020230802]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_1hr4x")
 gravity_scale = 0.0
 script = ExtResource("1_741mf")
