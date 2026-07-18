@@ -14,8 +14,8 @@ func _process(delta):
 
 func _move_toward_mouse(delta: float) -> void:
 	var dir_to_mouse: Vector2 = get_global_mouse_position() - drill.global_position
-	var new_vel = dir_to_mouse.normalized() * max_player_speed * delta
-	var collided := move_and_collide(new_vel)
+	#var new_vel = dir_to_mouse.normalized() * max_player_speed * delta
+	var collided := move_and_collide(dir_to_mouse)
 	if (collided):
 		collided.get_collider().apply_impulse(Vector2(0,-1).rotated(rotation))
 

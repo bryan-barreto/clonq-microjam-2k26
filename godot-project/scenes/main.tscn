@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://3snrnt3qhca7" path="res://src/main.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://dxci17kq4j4nv" path="res://prefab/hit_box.tscn" id="2_sugp2"]
+[ext_resource type="Script" uid="uid://bqgkspnqas6sr" path="res://src/needle.gd" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://3fj2creufpif" path="res://src/floor.gd" id="6_o6xl0"]
 [ext_resource type="Script" uid="uid://d3cesqdn66rk6" path="res://src/mouse.gd" id="6_tefeu"]
 
@@ -19,6 +20,8 @@ size = Vector2(241, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_85g3d"]
 size = Vector2(4, 168)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyhfs"]
 
 [node name="Main" type="Node2D" unique_id=1134354879]
 script = ExtResource("1_o5qli")
@@ -64,7 +67,6 @@ layout_mode = 2
 theme_override_constants/separation = 23
 
 [node name="Win" type="Button" parent="Control/CenterContainer/Container/Container" unique_id=362210257]
-visible = false
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 disabled = true
@@ -117,6 +119,12 @@ shape = SubResource("RectangleShape2D_85g3d")
 [node name="Meteors" type="Node2D" parent="." unique_id=2079371963]
 
 [node name="MiniMeteors" type="Node2D" parent="." unique_id=591848546]
+
+[node name="Needle" type="CharacterBody2D" parent="." unique_id=1451501838]
+script = ExtResource("5_tbgi4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Needle" unique_id=805446573]
+shape = SubResource("RectangleShape2D_jyhfs")
 
 [connection signal="pressed" from="Control/CenterContainer/Container/Container/Win" to="." method="_on_win_pressed"]
 [connection signal="pressed" from="Control/CenterContainer/Container/Container/Lose" to="." method="_on_lose_pressed"]
